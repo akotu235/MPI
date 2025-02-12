@@ -17,7 +17,7 @@ Szczegóły implementacji dostępne są pod adresem: <https://github.com/akotu23
 
 W celu zrównoleglenia algorytmu "Gry Życia" zastosowano bibliotekę MPI, dzieląc planszę na segmenty przypisane do różnych procesów. Każdy proces otrzymuje fragment siatki, na której wykonuje obliczenia. Po każdej iteracji generacji procesy wymieniają między sobą krawędziowe wiersze, zapewniając poprawność symulacji.
 
-Podział został zrealizowany w sposób jednowymiarowy (wiersze). Proces $ 0 $ pełni dodatkową funkcję zarządzającą, inicjalizując planszę i rozsyłając dane. Synchronizacja pomiędzy procesami odbywa się za pomocą operacji `MPI_Sendrecv`, które umożliwiają wymianę brzegowych wierszy pomiędzy sąsiadującymi procesami.
+Podział został zrealizowany w sposób jednowymiarowy (wiersze). Proces $0$ pełni dodatkową funkcję zarządzającą, inicjalizując planszę i rozsyłając dane. Synchronizacja pomiędzy procesami odbywa się za pomocą operacji `MPI_Sendrecv`, które umożliwiają wymianę brzegowych wierszy pomiędzy sąsiadującymi procesami.
 
 ## 3. Weryfikacja rozwiązania
 
@@ -124,7 +124,7 @@ Podział został zrealizowany w sposób jednowymiarowy (wiersze). Proces $ 0 $ p
 3. **Jeśli korzysta się ze scentralizowanego schematu równoważenia obciążenia, czy sprawdzono, że menedżer (master) nie stanie się wąskim gardłem? Można zmniejszyć koszty komunikacji w tych schematach, przekazując masterowi wskaźniki do zadań (tasków), a nie same taski.**
 
    ❌
-   ***Nie**. Proces $ 0 $ pełni rolę centralnego menedżera podczas zbierania danych do wypisywania, co może stać się wąskim gardłem dla dużych `N`.*
+   ***Nie**. Proces $0$ pełni rolę centralnego menedżera podczas zbierania danych do wypisywania, co może stać się wąskim gardłem dla dużych `N`.*
 
 4. **Jeśli korzysta się z dynamicznego schematu równoważenia obciążenia, czy oszacowano względne koszty różnych strategii? Pamiętajmy, aby w analizie uwzględnić koszty wdrożenia. Probabilistyczne lub cykliczne schematy mapowania są proste i należy je zawsze brać pod uwagę, ponieważ pozwalają uniknąć konieczności powtarzania operacji równoważenia obciążenia.**
 
@@ -134,7 +134,7 @@ Podział został zrealizowany w sposób jednowymiarowy (wiersze). Proces $ 0 $ p
 5. **Jeśli korzysta się z metod probabilistycznych lub cyklicznych, czy jest wystarczająco dużo zadań (tasków), aby zapewnić rozsądne równoważenie obciążenia? Zazwyczaj wymagane jest co najmniej dziesięć razy więcej tasków niż procesorów.**
 
    ✅
-   ***Tak**. Dla dużych `N` liczba wierszy na procesor jest wystarczająca (np.  `N` $ = 1000 $, `psize` $ = 4 $ daje $250$ wierszy/procesor).*
+   ***Tak**. Dla dużych `N` liczba wierszy na procesor jest wystarczająca (np.  `N` $= 1000$, `psize` $= 4$ daje $250$ wierszy/procesor).*
 
 ## 4. Wnioski
 
@@ -146,7 +146,7 @@ W przeprowadzonej analizie zauważono kilka aspektów mogących wpływać na wyd
 
 * Komunikacja między procesami została zaimplementowana optymalnie przy pomocy `MPI_Sendrecv`, co pozwala na jednoczesną wymianę danych.
 
-* Proces $ 0 $ pełni rolę centralnego menedżera wyników, co może stanowić wąskie gardło dla dużych instancji problemu.
+* Proces $0$ pełni rolę centralnego menedżera wyników, co może stanowić wąskie gardło dla dużych instancji problemu.
 
 Potencjalnym usprawnieniem rozwiązania mogłoby być zastosowanie bardziej zaawansowanego modelu podziału obliczeń (np. podział 2D zamiast 1D) oraz dynamiczne równoważenie obciążenia w zależności od rozkładu obliczeń.
 
