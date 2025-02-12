@@ -8,7 +8,7 @@ double random_coordinate(double radius) {
 }
 
 int main() {
-    const int total_samples = 100000000;
+    const int total_samples = 1000000000;
     const double radius = 16.0;
     int hits = 0;
 

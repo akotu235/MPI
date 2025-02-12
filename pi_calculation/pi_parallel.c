@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    const int total_samples = 100000000;
+    const int total_samples = 1000000000;
     const double radius = 16.0;
 
     // Podział próbek
